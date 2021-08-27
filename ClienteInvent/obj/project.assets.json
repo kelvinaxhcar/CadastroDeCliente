@@ -1091,28 +1091,25 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Kelvin\\.nuget\\packages\\": {},
-    "D:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {},
-    "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet": {}
+    "C:\\Users\\Next\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Kelvin\\Desktop\\ClienteInvent\\ClienteInvent\\ClienteInvent.csproj",
+      "projectUniqueName": "C:\\Users\\Next\\Desktop\\Projetos\\CadastroDeCliente\\ClienteInvent\\ClienteInvent.csproj",
       "projectName": "ClienteInvent",
-      "projectPath": "C:\\Users\\Kelvin\\Desktop\\ClienteInvent\\ClienteInvent\\ClienteInvent.csproj",
-      "packagesPath": "C:\\Users\\Kelvin\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Kelvin\\Desktop\\ClienteInvent\\ClienteInvent\\obj\\",
+      "projectPath": "C:\\Users\\Next\\Desktop\\Projetos\\CadastroDeCliente\\ClienteInvent\\ClienteInvent.csproj",
+      "packagesPath": "C:\\Users\\Next\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Next\\Desktop\\Projetos\\CadastroDeCliente\\ClienteInvent\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "D:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-        "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet"
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\Kelvin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Next\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net5.0"
