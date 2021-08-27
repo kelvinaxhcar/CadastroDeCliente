@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 using ConsoleTables;
 
 namespace ClienteInvent
@@ -8,7 +7,7 @@ namespace ClienteInvent
     {
         private static RepositorioCliete _repositorioCliete = new RepositorioCliete();
 
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             Console.WriteLine("--------------------------------------------------");
             Console.WriteLine("                 Bem vindo                        ");
@@ -64,7 +63,7 @@ namespace ClienteInvent
             MostrarTabele();
             Console.Write("Digite um Id referente ao cliete que deseja alterar: \n");
             Console.Write(" --> ");
-            clienteModel.id = Int32.Parse(Console.ReadLine());
+            clienteModel.id = Int32.Parse(Console.ReadLine() ?? string.Empty);
             Cliente clienteDoBanco = _repositorioCliete.BuscarPeloId(clienteModel.id);
             Console.WriteLine("Digite um comando referente ao campo que deseja altarar: \n" +
                               $"(1) Para Alterar o Nome: {clienteDoBanco.nome}\n" +

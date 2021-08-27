@@ -31,20 +31,13 @@ namespace ClienteInvent
             {
                 using (var command = dbConnection.CreateCommand())
                 {
-                    command.CommandText = "select*From Cliente";
+                    command.CommandText = "SELECT * FROM Cliente";
 
                     var dbReader = command.ExecuteReader();
 
                     while (dbReader.Read())
                     {
-                        var cliente = new Cliente
-                        {
-                            id = dbReader.GetInt32("IdCliente"),
-                            nome = dbReader.GetString("Nome"),
-                            cpf = dbReader.GetString("Cpf")
-                        };
-
-                        listDeClientes.Add(cliente);
+                        listDeClientes.Add(PreencherCliente(dbReader));
                     }
                 }
             }
@@ -76,50 +69,37 @@ namespace ClienteInvent
             {
                 using (var command = dbConnection.CreateCommand())
                 {
-                    var query = "delete From Cliente where IdCliente = @parametroId";
+                    var query = "DELETE FROM Cliente WHERE IdCliente = @parametroId";
                     command.CommandText = query;
                     
                     AddParam(command, "parametroId", cliente.id);
                     command.ExecuteNonQuery();
-                    
                 }
             }
         }
         
-
         public Cliente BuscarPeloId(int id)
         {
-            var listDeClientes = new Cliente();
+            var cliente = new Cliente();
             using (var dbConnection  = Open())
             {
                 using (var command = dbConnection.CreateCommand())
                 {
-                    var query = $"select*from Cliente where  IdCliente = @parametroId";
+                    var query = "SELECT * FROM Cliente WHERE  IdCliente = @parametroId";
 
                     command.CommandText = query;
                     
                     AddParam(command, "parametroId", id);
                     var dbReader = command.ExecuteReader();
                     
-                    
                     while (dbReader.Read())
                     {
-                        var cliente = new Cliente
-                        {
-                            id = dbReader.IsDBNull("IdCliente") ? default: dbReader.GetInt32("IdCliente"),
-                            nome = dbReader.IsDBNull("Nome") ? default: dbReader.GetString("Nome"),
-                            cpf = dbReader.IsDBNull("Cpf") ? default: dbReader.GetString("Cpf"),
-                            
-                            
-                        };
-
-                        listDeClientes = cliente;
+                        var clienteBd = PreencherCliente(dbReader);
+                        cliente = clienteBd;
                     }
-
                 }
-                
             }
-            return listDeClientes;
+            return cliente;
         }
         
         public void Update(Cliente cliente)
@@ -128,14 +108,13 @@ namespace ClienteInvent
             {
                 using (var command = dbConnection.CreateCommand())
                 {
-                    var query = "update Cliente set Nome = @parametroNome, Cpf = @poarametroCpf where IdCliente = @parametroId";
+                    var query = "UPDATE Cliente SET Nome = @parametroNome, Cpf = @poarametroCpf WHERE IdCliente = @parametroId";
                     
                     command.CommandText = query;
                     
                     AddParam(command, "parametroNome", cliente.nome);
                     AddParam(command, "poarametroCpf", cliente.cpf);
                     AddParam(command, "parametroId", cliente.id);
-
                     
                     command.ExecuteNonQuery();
                 }
@@ -144,12 +123,21 @@ namespace ClienteInvent
         
         private void AddParam(SqlCommand command, string name, object value)
         {
-            var parmNome = command.CreateParameter();
-            parmNome.ParameterName = name;
-            parmNome.Value = value;
-            command.Parameters.Add(parmNome);
+            var parmName = command.CreateParameter();
+            parmName.ParameterName = name;
+            parmName.Value = value;
+            command.Parameters.Add(parmName);
         }
         
-        
+        private static Cliente PreencherCliente(SqlDataReader dbReader)
+        {
+            var cliente = new Cliente
+            {
+                id = dbReader.IsDBNull("IdCliente") ? default : dbReader.GetInt32("IdCliente"),
+                nome = dbReader.IsDBNull("Nome") ? default : dbReader.GetString("Nome"),
+                cpf = dbReader.IsDBNull("Cpf") ? default : dbReader.GetString("Cpf"),
+            };
+            return cliente;
+        }
     }
 }
