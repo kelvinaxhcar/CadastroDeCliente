@@ -29,7 +29,7 @@ namespace ClienteInvent
                               "(D)  Para deletar cliente\n" +
                               "(M)  Para mostrar todos os clientes\n" +
                               "(A)  para alterar um cliente\n");
-            Console.Write(" -->");
+            Console.Write(" --> ");
             var comando = Console.ReadLine();
             Console.Clear();
 
@@ -63,13 +63,14 @@ namespace ClienteInvent
         {
             MostrarTabele();
             Console.Write("Digite um Id referente ao cliete que deseja alterar: \n");
+            Console.Write(" --> ");
             clienteModel.id = Int32.Parse(Console.ReadLine());
             Cliente clienteDoBanco = _repositorioCliete.BuscarPeloId(clienteModel.id);
             Console.WriteLine("Digite um comando referente ao campo que deseja altarar: \n" +
                               $"(1) Para Alterar o Nome: {clienteDoBanco.nome}\n" +
                               $"(2) Para Alterar o CPF:  {clienteDoBanco.cpf}");
             Console.WriteLine();
-            Console.Write(" -->");
+            Console.Write(" --> ");
             var comandoCampo = Int32.Parse(Console.ReadLine());
 
 
@@ -84,10 +85,10 @@ namespace ClienteInvent
         public static void InserirCliente(Cliente clienteModel)
         {
             Console.WriteLine("Didite o nome do cliente e pressione enter");
-            Console.Write( "-->");
+            Console.Write(" --> ");
             clienteModel.nome = Console.ReadLine();
             Console.WriteLine("Didite o CPF do cliente e pressione enter");
-            Console.Write( "-->");
+            Console.Write(" --> ");
             clienteModel.cpf = Console.ReadLine();
 
             if (clienteModel.nome != "" && clienteModel.cpf != "")
@@ -127,18 +128,21 @@ namespace ClienteInvent
             Console.WriteLine();
         }
 
-        private static void DeletarCliente(Cliente clienteModel)
+        private static bool DeletarCliente(Cliente clienteModel)
         {
             Console.WriteLine("Didite o ID do cliente e pressione enter para deletar ou \n" +
                               "pressione somente enter para sair");
-            Console.Write( "-->");
+            Console.Write(" --> ");
             var idCliente = Console.ReadLine();
 
             var idClienteInt = 0;
             if (!int.TryParse(idCliente, out idClienteInt))
             {
                 Console.Clear();
-                
+                Console.BackgroundColor = ConsoleColor.Red;
+                Console.WriteLine(">>>> Digite um ID valido <<<<");
+                Console.BackgroundColor = ConsoleColor.Black;
+                return true;
             }
 
             clienteModel.id = Int32.Parse(idCliente);
@@ -161,7 +165,7 @@ namespace ClienteInvent
                 Console.BackgroundColor = ConsoleColor.Black;
             }
 
-            
+            return true;
         }
 
         static Cliente EditarCampos(int comando, Cliente cliente)
@@ -170,13 +174,13 @@ namespace ClienteInvent
             {
                 case 1:
                     Console.WriteLine("Digite o novo nome e pressione enter: ");
-                    Console.Write( "-->");
+                    Console.Write(" --> ");
                     cliente.nome = Console.ReadLine();
                     return cliente;
 
                 case 2:
                     Console.WriteLine("Digite o novo CPF e pressione enter: ");
-                    Console.Write( "-->");
+                    Console.Write(" --> ");
                     cliente.cpf = Console.ReadLine();
                     return cliente;
 
